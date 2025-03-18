@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Test</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+	<link rel="stylesheet" href="libs/bootstrap.min.css" type="text/css"/>
+	<style>
+	textarea {
+		font-family: monospace;
+		padding: .375rem .575rem !important;
+	}
+	</style>
+</head>
+<body>
+
+<main>
+	<div class="container py-4">
+		<div class="row align-items-md-stretch">
+			<div class="col-md-12 py-1">
+				<div class="h-100 p-3 bg-light border rounded-3">
+<div class="row">
+	<div class="col-md-12">
+		<div id="div_update_profile" style="float:right; display:none">
+			<button id="update_profile_btn" data-btn="update-profile" class="btn btn-sm btn-outline-success">Update profile</button>
+		</div>
+		<h2>Profile<small id="profile_loaded_indicator" style="font-size:0.5em; display:none;"> ✅loaded</small></h2>
+		<div class="form-floating mb-3">
+			<input type="text" class="form-control" placeholder="" data-profile="name" id="input_profile_name" value=""/>
+			<label for="floatingInput">Name (nickname)</label>
+		</div>
+		<div class="form-floating mb-3">
+			<input type="text" class="form-control" placeholder="" data-profile="email" id="input_profile_email" value=""/>
+			<label for="floatingInput">Email</label>
+		</div>
+		<div class="form-floating mb-3">
+			<input type="text" class="form-control" placeholder="" data-profile="url" id="input_profile_url" value=""/>
+			<label for="floatingInput">URL</label>
+		</div>
+	</div>
+</div>
+				</div>
+			</div>
+
+			<div class="col-md-12 py-1">
+				<div class="h-100 p-3 bg-light border rounded-3">
+					<div class="row">
+						<div class="nav col-md-2 list-group" role="tablist" aria-orientation="vertical">
+							<a class="list-group-item list-group-item-action active" data-bs-toggle="list" href="#v-tab-profile" role="tab">
+								🔐 Profile
+							</a>
+							<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#v-tab-accounts" role="tab">
+								🤝 Handshakes
+							</a>
+							<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#v-tab-messages" role="tab">
+								✉ Messages
+							</a>
+							<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#v-tab-settings" role="tab">
+								🛠 Settings
+							</a>
+						</div>
+						<div class="tab-content col-md-10">
+							<div class="tab-pane fade show active" id="v-tab-profile" role="tabpanel">
+<div class="row">
+	<div class="col-md-12">
+		<h2>Profile</h2>
+		<textarea class="form-control" style="height:140px;" id="area_profile"></textarea>
+		<div class="py-2 row">
+			<div class="col-8">
+				<button class="btn btn-success" data-btn="generate">Generate</button>
+				<button class="btn btn-primary" data-btn="load">Load</button>
+				<button class="btn btn-info disabled" data-btn="store">Import from Storage</button>
+			</div>
+			<div class="col-4 text-end">
+				<button class="btn btn-sm btn-outline-secondary" data-btn="profilecopy" data-clipboard="#area_profile" data-clipboard-name="Profile">Copy</button>
+				<button class="btn btn-sm btn-outline-secondary" data-btn="download">Download</button>
+			</div>
+		</div>
+		<div class="py-2 row">
+			<div class="col-md-6">
+				<h4 class="pt-2">
+					Public Sign Key
+					<button class="btn btn-sm btn-outline-secondary" data-btn="profilecopy" data-clipboard="#area_public_key" data-clipboard-name="Public Sign Key">Copy</button>
+				</h4>
+				<textarea class="form-control" disabled="disabled" style="height:120px;" data-area="public-key" id="area_public_key"></textarea>
+			</div>
+			<div class="col-md-6">
+				<h4 class="pt-2">Add account</h4>
+				<textarea class="form-control" style="height:70px;" data-area="account-key" id="area_account_key"></textarea>
+				<div class="pt-2">
+					<button class="btn btn-primary" data-btn="add-account" id="add_account_btn">Add</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+							</div>
+							<div class="tab-pane fade" id="v-tab-accounts" role="tabpanel">
+<div class="row">
+<!--
+	<div class="col-md-6">
+		<h4 class="pt-2">Relation request</h4>
+		<div class="form-floating mb-3">
+			<input type="text" class="form-control" placeholder="" id="input_relation_request_receiver" value=""/>
+			<label for="floatingInput">Receiver</label>
+		</div>
+		<textarea class="form-control mb-2" disabled="disabled" style="height:90px;" data-area="relation-request" id="area_relation_request"></textarea>
+		<textarea class="form-control" disabled="disabled" style="height:70px;" data-area="relation-private-request" id="area_relation_private_request"></textarea>
+		<div class="pt-2">
+			<button class="btn btn-success" data-btn="create-relation-request" id="add_createrelationrequest_btn">Create new request</button>
+			<button class="btn btn-primary" data-btn="add-relation-request" id="add_relationrequestprofile_btn">Add to Profile</button>
+			<button class="btn btn-secondary" data-btn="request-copy" data-clipboard="#area_relation_request" data-clipboard-name="Signed request">Copy</button>
+		</div>
+	</div>
+	<div class="col-md-6">
+-->
+	<div class="col-md-12">
+		<h4 class="pt-2">Relation request</h4>
+		<button data-btn="open-create-request" class="btn btn-outline-success btn-sm">Create new request</button>
+		<button data-btn="open-receive-request" class="btn btn-outline-primary btn-sm">Accept a request</button>
+	</div>
+	<div class="col-md-12">
+		<h4 class="pt-2">Pending requests</h4>
+		<select class="form-control" id="pendingrequests_list" data-lst="pendingrequests"></select>
+		<div class="hstack gap-3 py-2">
+			<div class="btn-group">
+				<button data-btn="show-sel-request" class="btn btn-outline-secondary btn-sm">Show request</button>
+				<button type="button" class="btn btn-outline-secondary btn-sm dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+					<span class="visually-hidden">Toggle Dropdown</span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a class="dropdown-item" href="#" data-btn="show-sel-request">Small</a></li>
+					<li><a class="dropdown-item" href="#" data-btn="resend-sel-request">Full</a></li>
+				</ul>
+			</div>
+			<button data-btn="confirm-sel-request" class="btn btn-outline-success btn-sm">Confirm request</button>
+			<button data-btn="delete-sel-request" class="ms-auto btn btn-outline-danger btn-sm">Delete request</button>
+		</div>
+		<dl class="row" id="selected_pending_request">
+		</dl>
+	</div>
+</div>
+							</div>
+							<div class="tab-pane fade" id="v-tab-messages" role="tabpanel">
+<div class="row">
+	<div class="col-md-12 py-2">
+		<h4>Accounts</h4>
+		<select class="form-control" id="account_list"></select>
+	</div>
+</div>
+							</div>
+							<div class="tab-pane fade" id="v-tab-settings" role="tabpanel">
+<div class="row">
+	
+</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-md-6 py-2">
+				<div class="h-100 p-3 text-white bg-dark rounded-3">
+					<h2>Input</h2>
+					<textarea class="form-control" id="area1"></textarea>
+				</div>
+			</div>
+			<div class="col-md-6 py-2">
+				<div class="h-100 p-3 bg-light border rounded-3">
+					<h2>Output</h2>
+					<textarea class="form-control" id="area2"></textarea>
+				</div>
+			</div>
+			<div class="col-md-12">
+<pre class="py-2 overflow-auto" style="max-height:250px;" id="output"></pre>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="modal-create-request" tabindex="-1" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title fs-5">Relation request</h2>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="form-floating mb-3">
+						<input type="text" class="form-control" placeholder="" id="input_relation_request_receiver" value=""/>
+						<label for="floatingInput">Receiver</label>
+					</div>
+					<div class="pb-2">
+						<button class="btn btn-success" data-btn="create-relation-request" id="add_createrelationrequest_btn">Create new request</button>
+					</div>
+					<h3 class="modal-title fs-5 pb-1">
+						Public request
+						<button class="btn btn-sm btn-outline-secondary" data-btn="request-copy" data-clipboard="#area_relation_request" data-clipboard-name="Signed request">Copy</button>
+					</h3>
+					<textarea class="form-control mb-2" disabled="disabled" style="height:160px;" data-area="relation-request" id="area_relation_request"></textarea>
+
+					<h3 class="modal-title fs-5">Private request</h3>
+					<textarea class="form-control" disabled="disabled" style="height:100px;" data-area="relation-private-request" id="area_relation_private_request"></textarea>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" data-btn="finalize-new-request">Confirm (Add to Profile)</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="modal-accept-request" tabindex="-1" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title fs-5">Accept a relation request</h2>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<textarea class="form-control" style="height:120px;" data-area="received-request-area" id="area_received_relation_request"></textarea>
+					<button type="button" class="btn btn-primary mt-2 mb-3" data-btn="decode-received-request">Decode the request</button>
+					<dl class="row">
+						<dt class="col-sm-3">Date</dt>
+						<dd class="col-sm-9" data-field="date"></dd>
+						<dt class="col-sm-3">Identity</dt>
+						<dd class="col-sm-9" data-field="identity"></dd>
+						<dt class="col-sm-3">UID</dt>
+						<dd class="col-sm-9" data-field="uid"></dd>
+						<dt class="col-sm-3">Alg</dt>
+						<dd class="col-sm-9" data-field="alg"></dd>
+					</dl>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" data-btn="finalize-new-request">Confirm (Add to Profile)</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="modal-confirm-request" tabindex="-1" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5">Confirm Request</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<dl class="row">
+						<dt class="col-sm-3">Receiver</dt>
+						<dd class="col-sm-9" data-field="receiver"></dd>
+						<dt class="col-sm-3">UID</dt>
+						<dd class="col-sm-9" data-field="uid"></dd>
+					</dl>
+					<textarea class="form-control" style="height:120px;" data-area="confirm-request-area"></textarea>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" data-btn="finalize-sel-request">Confirm</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</main>
+
+	<script type="text/javascript" src="libs/protobuf.min.js"></script>
+	<script type="text/javascript" src="core.js"></script>
+	<script type="text/javascript" src="index.js"></script>
+
+	<script type="text/javascript" src="libs/bootstrap.bundle.min.js"></script>
+</body>
+</html>
