@@ -29,6 +29,10 @@ Social platforms are closed by definition since they want to centralize the user
 The asynchronous electronic communication must be between people and they need to own their data. They need to be able to change where it is stored, to backup it, etc.
 With the recent events in world politics, foreign interference, non-free speech, surveillance of data; countries should be able to be independent for their people communication, without possible foreign interference or espionage from other countries, even if there are allies.
 
+Unlike social platforms, asynchronous communication need a different approach to define how a person can contact another. They need to (really) know each other or use a process to allow them to trust the other.
+
+That kind of spam/phising issue is growing and is affecting more than just email communication; it is spreading in social platforms and even in classical websites: for faking websites, generating fake content or crawling webpages. Cloud providers, proxies and other tools making difficult to identify who is "legit" and who is "faking".
+
 # Concept: Identities and sub-identities
 
 With the need of trust, we need to have identities; it allows cryptographic operation and secure communication establishment between parties.
@@ -43,6 +47,13 @@ The identity must live and, in a way, the ecosystem should encourage key rotatio
 
 The identity concept is close the cryptography and "social relations"; it should not provide any feature to perform communication but only how the data is stored and exchanged.
 Therefore, the identity is composed of public and private keys for encryption and signature.
+
+When two identities create a secure communication channel, they create new keys specifically for their exchanges. It results of a unique channel identifier attached to the chosen identities (or sub-identities) for each member in the secure communication.
+
+*To be define:*\
+> How create a sub-identity (with partial identity details) and make the relation with the main identity without leaking the full personal details.\
+Using a traditional signature, will use the chain of signature and go up to the root (country or independant provider).\
+Depending the needs of identity details, the link between the sub-identity and the main identity can be high or low. A lower link means that it would be possible to use several sub-identities to create several accounts in a platform, without the possiblity to detect it. A high link must provide enough details to be able to know that one person is unique, so in a way, to provide an identifier of the main identity.
 
 ## Concept: On behalf of
 
@@ -64,6 +75,12 @@ Chain of trust is easier and smaller than "web of trust" and is more adapt to ou
 For the public domain, the administrations are the more logical instance. Just like they delivery identity paper, the digital identity should be a part of it. Sub-identities are there to prevent against direct tracking.
 
 Direct trust is compatible with Chain of trust; when two identity establish their channel of communication, they store in their storage, the identity of the other (with the way to contact him) with attributes and signature.
+
+The idea behind the chain of trust is to let countries manage the digital identiy with the administrative identity. A real person like a company would have an identity (or a Company identity to create identities for their employees).
+
+Since the main identity is signed by an authority, that identity is precious and should be protected using a strong security system, such as a hardware cryptographic key for example. That key should be use the less possible and only for "administration" operation or recovery. Creation of "devices" to access the identity content (and sub-identities) should use that key.\
+With one single point of failure, the organization (and rights) given to identities must be limited; the main key, used as a recovery might have also some identified backup plans.\
+The Shamir secret sharing algorithm is a way to split a secret to multple "people" and create a backup.
 
 ## Issue/Reflection: Easy way to first contact
 
@@ -94,6 +111,14 @@ Without relay or contact form, the direct exchange must be easy (and as fast as 
 
 With a direct exchange when it is possible to send the signed identity via another communication protocol (instant messaging, even QR code generation); it is best that the shared identity is signed with a short period of validity and with some protection: like "additional authentication data", validation code or even password depending the level of security of the communication channel.
 
+### Supported features with the identities and sub-identities
+
+Proof of identity - Sending confirmed identity details, certified by the authority (country, company, independant provider...)
+
+Authentication - Using the related sub-identity keys.
+
+Signature of content
+
 # Concept: Personal storage
 
 The way the message are transmitted is important, but the concept of how they are stored is also important.
@@ -106,6 +131,32 @@ Let us see a complete different way of communication, still asynchronously but w
 
 Sending a "mail" is sending a file containing the text, with some attributes (a title, a thread reference, message reference), identities who are the recipients (with tags) and the all signed with the identity of the sender.\
 The file is stored in the sender's personal storage and sent to the recipients. That same is stored in the recipients' personal storage but since they are not the authors; it is seen as a received document.
+
+## Accessing a personal storage
+
+*Define how a personal storage can be addressed (identified), moved.*\
+*The constraint of anonymization for identities and aliases could be problematic.*\
+*The way the sub-identities are handle must be define.*
+
+For the entreprise use case, the personal storage of each account can be at the same place; there is not the same need of let the didentity be free to choose and move its data from one provider to another.
+
+Even if the data can be moved, there is a need of "fixed point" to help addressing and recovery.
+
+### Multiple personal storage
+
+When an email client can handle multiple account in the same time, the usage of multiple personal storage have a differnet angle: the contet is "centralized" in the personal storage of the main identity.
+
+For personal storage vision, the usage of multiplke storages should be possible. It would be possible to copy data from the other storage into the main personal storage; but when communicating with other people using a sub-identity (link to another storage), the data should be available under the other storage since it is the access point for communication.
+
+### Relay storage mapping
+
+*Part still in work in progress*
+
+Mapping might not be required since the shainr gkeys come with the entry point, so if someone changes its personal storage, he should be able to content everyone to inform the change.\
+*Just like changing the phone number, the full address book is still available in the phone.*
+
+The mapping in not an identity directory; it should help knowing what server contact to delivery the content.\
+When saving a contact, the identity details is stored (unique identifies for identity and communication channel, public cryptographic keys, private key for private communication, etc.), the "entry point" for the contact is also stored. If the identity change its provider, the communication should still be possible, just like resolving a server hosting for a website using DNS.
 
 ## Files and attachments
 
@@ -131,3 +182,9 @@ Content between the main identity and its alias must be in different "spaces" wi
 On the same principal, the main identity should not send content from an alias, otherwise the alias would be compromised.
 
 To be able to use multiple identity for one personal storage, an identity should be represent by a "unique identifier" that is not "personal". The way to contact an identity should not contains details of that identity and, since a sub-identity can be created and destroyed easily.
+
+## Personal storage and content management
+
+Content (files) in the personal storage must be organized and separated regarding the differnt identities. The personal storage must also have a private section to store data only for the owner, such as the contacts.
+
+The usage of a kind of database could be useful to find in content and organize it, like handling "tags" (or "labels"), store bloom filters to speed up searchs, centralized in the storage to improve performances.
