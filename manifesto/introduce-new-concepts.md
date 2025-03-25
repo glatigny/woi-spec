@@ -50,7 +50,7 @@ Therefore, the identity is composed of public and private keys for encryption an
 
 When two identities create a secure communication channel, they create new keys specifically for their exchanges. It results of a unique channel identifier attached to the chosen identities (or sub-identities) for each member in the secure communication.
 
-*To be define:*\
+*To be define:*
 > How create a sub-identity (with partial identity details) and make the relation with the main identity without leaking the full personal details.\
 Using a traditional signature, will use the chain of signature and go up to the root (country or independant provider).\
 Depending the needs of identity details, the link between the sub-identity and the main identity can be high or low. A lower link means that it would be possible to use several sub-identities to create several accounts in a platform, without the possiblity to detect it. A high link must provide enough details to be able to know that one person is unique, so in a way, to provide an identifier of the main identity.
@@ -81,6 +81,18 @@ The idea behind the chain of trust is to let countries manage the digital identi
 Since the main identity is signed by an authority, that identity is precious and should be protected using a strong security system, such as a hardware cryptographic key for example. That key should be use the less possible and only for "administration" operation or recovery. Creation of "devices" to access the identity content (and sub-identities) should use that key.\
 With one single point of failure, the organization (and rights) given to identities must be limited; the main key, used as a recovery might have also some identified backup plans.\
 The Shamir secret sharing algorithm is a way to split a secret to multple "people" and create a backup.
+
+### Why not "Decentralized identifiers" (DIDs)?
+
+DID wants to eliminate the requirement of centralized authorities and gives to entities (human and non-human), the ability to control their digital identifiers without the need of external authorities.
+
+The decentralized part of DID is the usage of blockchain technologies.
+
+By using a decentralized organization, trust has the same issues than PGP: It should use a "web of trust" organization or a selection of authorities: [Ecosystem Trust White Paper](https://identity.foundation/publications/DecentralizingTrustInIdentitySystems.pdf).\
+With the same drawbacks that we could see with SSL certificates: the creation of a business without the guarantee of security.\
+While the "fediverse" (ActivityPub protocol) choose a federation organization, a fully decentralized identifier system cannot organize the trust. Even in a federated organization, each entity choose its level of trust with the other entities.
+
+Thus, choosing a "server" with Mastodon is creating an account that can communicate with other accounts in the fediverse. Nevertheless, it is possible to create multiple accounts in different "servers" in the fediverse; there is no main authority for all the entities, each one is being independent and exchanging with the others.
 
 ## Issue/Reflection: Easy way to first contact
 
@@ -148,11 +160,16 @@ When an email client can handle multiple account in the same time, the usage of 
 
 For personal storage vision, the usage of multiplke storages should be possible. It would be possible to copy data from the other storage into the main personal storage; but when communicating with other people using a sub-identity (link to another storage), the data should be available under the other storage since it is the access point for communication.
 
-### Relay storage mapping
+### Relay of personal storage
+
+A sub-identity could be attached to a relay, which make the transfer with the main personal storage. It can send the received content to the main, or retrieve from the main if needed.\
+Thanks to the relay, the main storage is hidden for communication, the receivers can only see the relay and it can also help moving the personal storage.
+
+### Personal storage mapping
 
 *Part still in work in progress*
 
-Mapping might not be required since the shainr gkeys come with the entry point, so if someone changes its personal storage, he should be able to content everyone to inform the change.\
+Mapping might not be required since the sharing keys comes with the entry-point, so if someone changes its personal storage he should be able to contact everyone to inform the change.\
 *Just like changing the phone number, the full address book is still available in the phone.*
 
 The mapping in not an identity directory; it should help knowing what server contact to delivery the content.\
