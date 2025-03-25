@@ -245,7 +245,7 @@ One solution is to let the user provide some kind of "signed token" in order to 
 
 We can see use cases where emails are used as proof of identity, or more precisely, as proof that the user has access to his email address. It can be during the registration (proof that the given email is legitimate) or as multifactor authentication system.
 
-Some works are in progress toward W3C with "DID" (Digital Identity).
+Some works are in progress toward W3C with "DID" (Decentralized Identity).
 
 ### Confirmation link
 
